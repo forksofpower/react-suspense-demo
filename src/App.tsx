@@ -1,44 +1,50 @@
-import { Suspense } from 'react';
-// import { fetchColor } from './api/fetchColor';
+import { Suspense, lazy } from 'react';
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  NavLink,
+} from 'react-router-dom';
 
 import './App.css';
-// import colorResource from './resources/colorResource';
-import launchResource from './resources/launchResource';
-// const resource = fetchColor();
-// const resource = colorResource();
-const resource = launchResource();
 
-const Launches = () => {
-  const launches = resource.read();
-  return <pre>{JSON.stringify(launches, null, 2)}</pre>;
-};
+// Lazy Loaded Page Components
+const HomePage = lazy(() => import('./pages/home'));
+const RandomColorPage = lazy(() => import('./pages/random-color'));
+const LaunchesPage = lazy(() => import('./pages/launches'));
 
-// const RandomColor = () => {
-//   const color = resource.read();
-//   return (
-//     <div style={{ display: 'flex', alignItems: 'center' }}>
-//       <div
-//         style={{
-//           width: 100,
-//           height: 100,
-//           marginRight: 16,
-//           backgroundColor: color.hex_value,
-//         }}
-//       ></div>
-//       <h1>Color name: {color.color_name}</h1>
-//     </div>
-//   );
-// };
+function NavList() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li>
+          <NavLink to="random-color">Random Color</NavLink>
+        </li>
+        <li>
+          <NavLink to="launches">Launches</NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 
 function App() {
   return (
-    <div>
-      <h1>Launches</h1>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        {/* <RandomColor /> */}
-        <Launches />
-      </Suspense>
-    </div>
+    <>
+      <Router>
+        <NavList />
+        <Suspense fallback={<div>loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/random-color" element={<RandomColorPage />} />
+            <Route path="/launches" element={<LaunchesPage />} />
+          </Routes>
+        </Suspense>
+      </Router>
+    </>
   );
 }
 

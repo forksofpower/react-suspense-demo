@@ -1,4 +1,4 @@
-import { AsyncResource } from './resource';
+import { AsyncResource } from '../resource';
 
 type Color = {
   id: number;

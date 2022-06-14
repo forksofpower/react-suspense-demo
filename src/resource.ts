@@ -1,5 +1,5 @@
 import { DocumentNode } from 'graphql';
-import client from '../graphql/client';
+import client from './graphql/client';
 
 enum ResourceStatus {
   pending = 'PENDING',
