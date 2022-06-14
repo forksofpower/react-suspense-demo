@@ -1,31 +1,31 @@
-enum FetchStatus {
+enum Status {
   pending = 'PENDING',
   success = 'SUCCESS',
   error = 'ERROR',
 }
 
 export const wrapPromise = <T>(promise: Promise<T>) => {
-  let status: FetchStatus = FetchStatus.pending;
+  let status: Status = Status.pending;
   let result: T;
 
   let suspender = promise.then(
     (res) => {
-      status = FetchStatus.success;
+      status = Status.success;
       result = res;
     },
     (err) => {
-      status = FetchStatus.error;
+      status = Status.error;
       result = err;
     }
   );
   return {
     read() {
       switch (status) {
-        case FetchStatus.pending:
+        case Status.pending:
           throw suspender;
-        case FetchStatus.error:
+        case Status.error:
           throw result;
-        case FetchStatus.success:
+        case Status.success:
           return result;
       }
     },
