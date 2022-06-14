@@ -4,7 +4,7 @@ enum FetchStatus {
   error = 'ERROR',
 }
 
-export const wrapPromise = <T = any>(promise: Promise<T>) => {
+export const wrapPromise = <T>(promise: Promise<T>) => {
   let status: FetchStatus = FetchStatus.pending;
   let result: T;
 
