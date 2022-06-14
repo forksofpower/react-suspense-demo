@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Suspense } from 'react';
+import { fetchColor } from './api/fetchColor';
+
 import './App.css';
+const resource = fetchColor();
+
+const ColorDetails = () => {
+  const color = resource.color.read();
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div
+        style={{
+          width: 100,
+          height: 100,
+          marginRight: 16,
+          backgroundColor: color.hex_value,
+        }}
+      ></div>
+      <h1>Color name: {color.color_name}</h1>
+    </div>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Random Color Generator</h1>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <ColorDetails />
+      </Suspense>
     </div>
   );
 }
