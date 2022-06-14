@@ -9,9 +9,9 @@ type Color = {
   hsla_value: number[];
 };
 const fetchColorData = async (): Promise<Color> => {
-  return fetch('https://random-data-api.com/api/color/random_color')
-    .then((res) => res.json())
-    .then((res) => res);
+  return fetch('https://random-data-api.com/api/color/random_color').then(
+    (res) => res.json()
+  );
 };
 
 export const fetchColor = () => {

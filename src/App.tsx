@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
-import { fetchColor } from './api/fetchColor';
+// import { fetchColor } from './api/fetchColor';
 
 import './App.css';
-const resource = fetchColor();
+import colorResource from './resources/colorResource';
+// const resource = fetchColor();
+const resource = colorResource();
 
-const ColorDetails = () => {
-  const color = resource.color.read();
-
+const RandomColor = () => {
+  const color = resource.read();
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <div
@@ -27,7 +28,7 @@ function App() {
     <div>
       <h1>Random Color Generator</h1>
       <Suspense fallback={<h1>Loading...</h1>}>
-        <ColorDetails />
+        <RandomColor />
       </Suspense>
     </div>
   );
