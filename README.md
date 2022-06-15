@@ -17,8 +17,6 @@ React concurrent features (formerly Concurrent Mode)
 
 > Error Boundaries catch errors, Suspense Boundaries catch promises
 
-# ADD A BASIC ERROR BOUNDARY EXAMPLE WITH SUSPENSE TO SHOW THEY ARE COMPLIMENTARY
-
 **`<Suspense>` & `React.lazy`** can be used in tandem to lazy load typescript modules.
 
 ```tsx

@@ -42,7 +42,7 @@ function App() {
     <>
       <Router>
         <NavList />
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<div>loading page...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/random-color" element={<RandomColorPage />} />
