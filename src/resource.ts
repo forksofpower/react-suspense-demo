@@ -56,3 +56,37 @@ export class GraphqlResource<T> extends BaseResource<T> {
     );
   }
 }
+
+// class ObservableResource<T> extends BaseResource<T> {
+//   observers: Record<string, Function> = [];
+
+//   constructor(promise: Promise<T>) {
+//     super();
+//     this.promise = promise
+//       .then((data: T) => this.onNext(data))
+//       .catch((error: any) => this.onError(error));
+//   }
+//   onNext(data: T) {
+//     this.status = ResourceStatus.success;
+//     this.data = data;
+//     this.observers.forEach(
+//       ({ onNext }) => typeof onNext === 'function' && onNext(this.data)
+//     );
+//   }
+//   onError(error: any) {
+//     this.status = ResourceStatus.error;
+//     this.error = error;
+//     this.observers.forEach(
+//       ({ onError }) => typeof onError === 'function' && onError(this.error)
+//     );
+//   }
+//   observe(onNext: Function, onError: Function) {
+//     const observer = { onError, onNext };
+//     this.observers.push(observer);
+//     return () => {
+//       this.observers = this.observers.filter(
+//         (other) => other !== observer
+//       );
+//     };
+//   }
+// }
