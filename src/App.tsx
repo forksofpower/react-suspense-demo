@@ -8,8 +8,10 @@ import {
 
 import './App.css';
 
-// Lazy Loaded Page Components
-const HomePage = lazy(() => import('./pages/home'));
+// Static Import HomePage
+import HomePage from './pages/home';
+
+// Lazy Load Pages
 const RandomColorPage = lazy(() => import('./pages/random-color'));
 const LaunchesPage = lazy(() => import('./pages/launches'));
 const OhCrapPage = lazy(() => import('./pages/oh-crap'));

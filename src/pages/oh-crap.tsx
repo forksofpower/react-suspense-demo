@@ -4,7 +4,7 @@ import { AsyncResource } from '../resource';
 function dummyResource() {
   return new AsyncResource<{ test: true }>(
     new Promise((_, reject) => {
-      setTimeout(() => reject('Something crappy happened!'));
+      setTimeout(() => reject('Something crappy happened!'), 2000);
     })
   );
 }
@@ -21,7 +21,7 @@ const ErrorFallback = (_error: any) => {
 const OhCrapContent = () => {
   const dummy = resource.read();
 
-  return <div>This will always error! {dummy.test}</div>;
+  return <div>A user should never see this text. {dummy.test}</div>;
 };
 
 const OhCrap = () => (
