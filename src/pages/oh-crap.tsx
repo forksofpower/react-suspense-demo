@@ -13,7 +13,7 @@ const resource = dummyResource();
 const ErrorFallback = (_error: any) => {
   return (
     <div role="alert">
-      <p>Something went wrong!</p>
+      <h1 style={{ color: 'red' }}>Something went wrong!</h1>
     </div>
   );
 };

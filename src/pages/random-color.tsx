@@ -3,7 +3,7 @@ const resource = colorResource();
 
 const RandomColor = () => {
   const color = resource.read();
-  console.log(color.hex);
+
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <div
